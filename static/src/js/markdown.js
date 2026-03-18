@@ -18,7 +18,11 @@ const timeouts = new WeakMap(),
 const MathExtension = {
 	name: "math",
 	level: "inline",
-	start: pSrc => pSrc.match(/\$|\\\(|\\\[/)?.index,
+	start: pSrc => {
+		const match = pSrc.match(/\\\(|\\\[|\$\$|\$(?!\d)/);
+
+		return match?.index;
+	},
 	tokenizer: pSrc => {
 		const displayRule = /^(?:\$\$|\\\[)([\s\S]+?)(?:\$\$|\\\])/,
 			displayMatch = displayRule.exec(pSrc);
@@ -32,14 +36,27 @@ const MathExtension = {
 			};
 		}
 
-		const inlineRule = /^(?:\$|\\\()([\s\S]+?)(?:\$|\\\))/,
-			inlineMatch = inlineRule.exec(pSrc);
+		// \( ... \) inline math
+		const parenRule = /^\\\(([\s\S]+?)\\\)/,
+			parenMatch = parenRule.exec(pSrc);
 
-		if (inlineMatch) {
+		if (parenMatch) {
 			return {
 				type: "math",
-				raw: inlineMatch[0],
-				text: inlineMatch[1].trim(),
+				raw: parenMatch[0],
+				text: parenMatch[1].trim(),
+				displayMode: false,
+			};
+		}
+
+		// $...$ inline math, but avoid matching currency like $4,000
+		const dollarMatch = /^\$([^\s$](?:[\s\S]*?[^\s$])?)\$(?!\d)/.exec(pSrc);
+
+		if (dollarMatch) {
+			return {
+				type: "math",
+				raw: dollarMatch[0],
+				text: dollarMatch[1].trim(),
 				displayMode: false,
 			};
 		}
