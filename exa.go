@@ -146,11 +146,11 @@ func ExaRunSearch(ctx context.Context, args *SearchWebArguments) (*ExaResults, e
 		contents["subpages"] = 1
 		contents["subpageTarget"] = []string{"readme", "changelog", "code"}
 		contents["text"] = map[string]any{
-			"maxCharacters": 10000,
+			"maxCharacters": 25000,
 		}
 	case "deep_read":
 		contents["text"] = map[string]any{
-			"maxCharacters": 25000,
+			"maxCharacters": 40000,
 		}
 	}
 
@@ -173,7 +173,7 @@ func ExaRunContents(ctx context.Context, args *FetchContentsArguments) (*ExaResu
 			"highlightsPerUrl": 3,
 		},
 		"text": map[string]any{
-			"maxCharacters": 20000,
+			"maxCharacters": 64000,
 		},
 		"livecrawl": "preferred",
 	}
