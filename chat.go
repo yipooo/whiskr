@@ -540,6 +540,12 @@ func HandleChat(w http.ResponseWriter, r *http.Request) {
 
 		debug("got %q tool call", tool.Name)
 
+		if len(request.Tools) == 0 {
+			response.WriteChunk(NewChunk(ChunkError, fmt.Errorf("got %q tool call", tool.Name)))
+
+			continue
+		}
+
 		switch tool.Name {
 		case "search_web":
 			arguments, err := ParseAndUpdateArgs[SearchWebArguments](tool)
