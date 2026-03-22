@@ -28,7 +28,6 @@ Help users create effective prompts or improve existing ones. Users may have jus
 2. Draft a minimal working version first
 3. Identify where it might fail (ambiguity, edge cases, format issues)
 4. Add specificity, examples, or constraints only where needed
-5. Provide the prompt in a code block for easy copying
 
 ## When Analyzing/Improving Prompts
 

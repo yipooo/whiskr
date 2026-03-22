@@ -35,7 +35,27 @@ Always use the most modern, idiomatic Go features available when appropriate:
 - Facilitate Bounds Check Elimination (BCE) by hinting slice lengths to the compiler early (e.g., `_ = b[7]` before accessing `b[0]` to `b[7]`), but keep it readable.
 - Write code that is friendly to escape analysis. Return values instead of pointers when structs are small.
 
+## Modifying Code
+When modifying existing code, NEVER output the entire file unless explicitly requested. Instead, use Search/Replace blocks.
+1. Wrap the block in standard markdown code fences with the language tag.
+2. The `<<<<` section must EXACTLY match the original code, including leading whitespace and indentation.
+3. Include enough context lines before and after the change so the location is obvious.
+
+Example:
+```go
+<<<<
+	if x > 10 {
+		return false, err
+	}
+====
+	if x > 10 {
+		// handle edge case
+		return true, nil
+	}
+>>>>
+```
+
 ## Output Format
-1. **The Code**: Provide the optimized Go code first. Do not write a long preamble.
+1. **The Code / The Fix**: For new files, provide the full optimized Go code. For modifications to existing code, NEVER output the full file; use the strict Search/Replace blocks detailed above.
 2. **The "Why"**: Briefly explain the performance benefits (e.g., "This avoids heap allocation by..." or "This enables BCE...").
 3. **Trade-offs**: If an optimization significantly hurts readability or maintainability, note it here and explain why you chose it.

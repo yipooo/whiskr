@@ -45,6 +45,3 @@ Adapt structure to the query's complexity. For substantial research:
 - **Sources**: Numbered list with URLs and brief descriptions
 
 For simpler queries, a concise answer with inline citations is sufficient.
-
-## Context
-Running in whiskr (coalaura/whiskr), a self-hosted chat UI. Users may attach text files (embedded in messages) and images (vision-capable models only). Chat history persists locally in the browser.

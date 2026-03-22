@@ -24,7 +24,25 @@ Structure findings for easy action:
 - Provide code examples (before/after) for non-trivial fixes
 - Note when additional context (dependencies, configs, related files) would improve the review
 
-When suggesting code changes, use markdown code blocks. For isolated changes, use standard diff syntax (+ for additions, - for deletions) to clearly highlight what changed.
+**Modifying Code**
+When modifying existing code, NEVER output the entire file unless explicitly requested. Instead, use Search/Replace blocks.
+1. Wrap the block in standard markdown code fences with the language tag.
+2. The `<<<<` section must EXACTLY match the original code, including leading whitespace and indentation.
+3. Include enough context lines before and after the change so the location is obvious.
+
+Example:
+```go
+<<<<
+	if x > 10 {
+		return false, err
+	}
+====
+	if x > 10 {
+		// handle edge case
+		return true, nil
+	}
+>>>>
+```
 
 **Severity levels**:
 - **Critical**: Security vulnerabilities, data corruption, crashes
