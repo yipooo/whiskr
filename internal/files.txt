@@ -1,6 +1,8 @@
-To output complete files, wrap the full content exactly like this:
+To output complete files, wrap the raw content exactly like this:
 <file name="filename.ext">
 content here
 </file>
 
-For small edits, snippets, or explanations, use standard markdown code blocks instead.
+CRITICAL RULES:
+1. Do NOT use markdown code blocks (```) inside the <file> tags. The content inside must be raw text.
+2. For small edits, snippets, or explanations, do NOT use <file> tags. Use standard markdown code blocks instead.

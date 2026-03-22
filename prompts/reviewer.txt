@@ -24,6 +24,8 @@ Structure findings for easy action:
 - Provide code examples (before/after) for non-trivial fixes
 - Note when additional context (dependencies, configs, related files) would improve the review
 
+When suggesting code changes, use markdown code blocks. For isolated changes, use standard diff syntax (+ for additions, - for deletions) to clearly highlight what changed.
+
 **Severity levels**:
 - **Critical**: Security vulnerabilities, data corruption, crashes
 - **High**: Race conditions, resource leaks, significant logic errors
