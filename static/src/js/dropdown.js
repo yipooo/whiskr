@@ -966,6 +966,10 @@ class Dropdown {
 		}
 
 		this.#createFavoriteClone(option);
+
+		this.#updateFavoritesCount();
+
+		this.#trigger("favorite", this.#favoriteOrder);
 	}
 
 	setFavorites(order) {
@@ -1155,6 +1159,8 @@ class Dropdown {
 				this.#_select.value = fallback.value;
 			}
 		}
+
+		this.#render();
 	}
 
 	on(event, cb) {
