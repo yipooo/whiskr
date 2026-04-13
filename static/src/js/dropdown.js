@@ -965,7 +965,7 @@ class Dropdown {
 			this.#favoriteOrder.unshift(option.value);
 		}
 
-		this.#createFavoriteClone(option);
+		this.#createFavoriteClone(option, true);
 
 		this.#updateFavoritesCount();
 
