@@ -92,7 +92,7 @@ func LoadModels() error {
 	)
 
 	for _, model := range list {
-		if slices.Contains(model.OutputModalities, "embeddings") {
+		if !slices.Contains(model.OutputModalities, "text") && (!env.Models.ImageGeneration || !slices.Contains(model.OutputModalities, "image")) {
 			continue
 		}
 
